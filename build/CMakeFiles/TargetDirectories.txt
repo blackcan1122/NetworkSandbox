@@ -1,0 +1,4 @@
+/home/blackcan/Hax0rStuff/NetworkTest/build/CMakeFiles/server.dir
+/home/blackcan/Hax0rStuff/NetworkTest/build/CMakeFiles/client.dir
+/home/blackcan/Hax0rStuff/NetworkTest/build/CMakeFiles/edit_cache.dir
+/home/blackcan/Hax0rStuff/NetworkTest/build/CMakeFiles/rebuild_cache.dir
