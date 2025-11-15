@@ -1,143 +1,59 @@
 #include "NettyGritty_C.hpp"
 #include <iostream>
-#include <cstring>
-#include <thread>
-#include <chrono>
-#include <vector>
-#include <algorithm>
 
-
-#define IP_ADDRESS "127.0.0.1"
 #define PORT 8080
-#define BUFFER_SIZE 1024
 
 int main()
 {
-    NetworkInitializer netInit;
-    NettyGritty::socket_t sockfd = socket(AF_INET, SOCK_STREAM, 0);
-
-    if (!NettyGritty::is_valid_socket_t(sockfd))
+    try
     {
-        int error = NettyGritty::get_last_error_t();
-        std::cerr << "Socket creation failed with error: " << error << std::endl;
-        std::cout << "Press Enter to exit...";
-        std::cin.get();
-        return EXIT_FAILURE;
-    }
+        NetworkInitializer server;
+        
+        // Setup server socket
+        server.OpenSocket(SocketDomain::IPv4, SocketType::Stream, SocketFlags::NonBlocking);
+        server.SetReuseAddr(true);
+        server.SetSocketAddress(Port(PORT));
+        server.Bind();
+        server.Listen();
 
-    // Set socket to non-blocking
-    NettyGritty::set_non_blocking_t(sockfd, true);
+        std::cout << "Server bound successfully to port " << PORT << std::endl;
+        std::cout << "Server listening... Press Ctrl+C to stop." << std::endl;
 
-    // Enable SO_REUSEADDR to avoid "Address already in use" errors
-    int opt = 1;
-    NettyGritty::setsockopt_t(sockfd, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<NettyGritty::message_t>(&opt) ,sizeof(opt));
+        // Register event callbacks
+        server.OnNewClient([](std::shared_ptr<GritSocket> client) {
+            std::cout << "New client connected!" << std::endl;
 
-    sockaddr_in serverAddr;
-    std::memset(&serverAddr, 0, sizeof(serverAddr));
-    serverAddr.sin_family = AF_INET;
-    serverAddr.sin_port = htons(PORT);
-    serverAddr.sin_addr.s_addr = INADDR_ANY;
+            // Register callbacks for this client
+            client->OnDataReceived([](GritSocket& socket, const char* data, size_t length) {
+                std::string message(data, length);
+                std::cout << "Received from client: " << message << std::endl;
+            });
 
-    std::cout << serverAddr.sin_addr.s_addr << std::endl;
+            client->OnDisconnect([](GritSocket& socket) {
+                std::cout << "Client disconnected" << std::endl;
+            });
 
-    if (bind(sockfd, (sockaddr *)&serverAddr, sizeof(serverAddr)) < 0)
-    {
-        std::cerr << "Bind failed with error: " << NettyGritty::get_last_error_t()
-                  << " (" << strerror(errno) << ")" << std::endl;
-        std::cout << "Press Enter to exit...";
-        std::cin.get();
-        return EXIT_FAILURE;
-    }
+            client->OnError([](GritSocket& socket, int errorCode, const std::string& errorMsg) {
+                std::cerr << "Client error " << errorCode << ": " << errorMsg << std::endl;
+            });
+        });
 
-    std::cout << "Server bound successfully to port " << PORT << std::endl;
+        server.OnError([](GritSocket& socket, int errorCode, const std::string& errorMsg) {
+            std::cerr << "Server error " << errorCode << ": " << errorMsg << std::endl;
+        });
 
-    if (listen(sockfd, SOMAXCONN) < 0)
-    {
-        std::cerr << "Listen failed with error: " << NettyGritty::get_last_error_t() << std::endl;
-        std::cout << "Press Enter to exit...";
-        std::cin.get();
-        return EXIT_FAILURE;
-    }
-
-    std::cout << "Server listening... Press Ctrl+C to stop." << std::endl;
-
-    std::vector<NettyGritty::pollfd_t> fds;
-    NettyGritty::pollfd_t server_fd;
-    server_fd.fd = sockfd;
-    server_fd.events = POLLIN;
-    fds.push_back(server_fd);
-
-    while (true)
-    {
-        int poll_count = NettyGritty::poll_t(fds.data(), fds.size(), 100);
-
-        if (poll_count < 0)
+        // Main event loop
+        while (true)
         {
-            std::cerr << "Poll failed with error: " << NettyGritty::get_last_error_t() << std::endl;
-            break;
-        }
-
-        for (size_t i = 0; i < fds.size(); ++i)
-        {
-            if (fds[i].revents & POLLIN)
-            {
-                if (fds[i].fd == sockfd)
-                {
-                    // Accept new connection
-                    sockaddr_in clientAddr;
-                    socklen_t clientLen = sizeof(clientAddr);
-                    NettyGritty::socket_t clientSocket = accept(sockfd, (sockaddr *)&clientAddr, &clientLen);
-
-                    if (NettyGritty::is_valid_socket_t(clientSocket))
-                    {
-                        NettyGritty::set_non_blocking_t(clientSocket, true);
-                        std::cout << "New client connected! Total clients: " << fds.size() << std::endl;
-                        
-                        pollfd client_fd;
-                        client_fd.fd = clientSocket;
-                        client_fd.events = POLLIN;
-                        fds.push_back(client_fd);
-                    }
-                }
-                else
-                {
-                    // Handle client data
-                    char buffer[BUFFER_SIZE];
-                    std::memset(buffer, 0, BUFFER_SIZE);
-                    
-                    int bytesReceived = recv(fds[i].fd, buffer, BUFFER_SIZE - 1, 0);
-                    
-                    if (bytesReceived > 0)
-                    {
-                        std::cout << "Received from client " << fds[i].fd << ": " << buffer << std::endl;
-                    }
-                    else if (bytesReceived == 0)
-                    {
-                        std::cout << "Client " << fds[i].fd << " disconnected. Total clients: " << (fds.size() - 2) << std::endl;
-                        NettyGritty::close_socket_t(fds[i].fd);
-                        fds.erase(fds.begin() + i);
-                        --i;
-                    }
-                    else
-                    {
-                        int error = NettyGritty::get_last_error_t();
-                        if (error != EWOULDBLOCK && error != EAGAIN)
-                        {
-                            std::cerr << "Receive failed from client " << fds[i].fd << " with error: " << error << std::endl;
-                            NettyGritty::close_socket_t(fds[i].fd);
-                            fds.erase(fds.begin() + i);
-                            --i;
-                        }
-                    }
-                }
-            }
+            server.Poll(100);
         }
     }
-
-    // Cleanup
-    for (auto& fd : fds)
+    catch (const std::exception& e)
     {
-        NettyGritty::close_socket_t(fd.fd);
+        std::cerr << "Server error: " << e.what() << std::endl;
+        std::cout << "Press Enter to exit...";
+        std::cin.get();
+        return EXIT_FAILURE;
     }
 
     return EXIT_SUCCESS;
