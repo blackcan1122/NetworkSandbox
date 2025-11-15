@@ -40,6 +40,7 @@ CMakeFiles/client.dir/source/client/main.cpp.o
  /usr/include/bits/locale.h
  /usr/include/bits/long-double.h
  /usr/include/bits/netdb.h
+ /usr/include/bits/poll.h
  /usr/include/bits/posix_opt.h
  /usr/include/bits/pthread_stack_min-dynamic.h
  /usr/include/bits/pthreadtypes-arch.h
@@ -235,6 +236,7 @@ CMakeFiles/client.dir/source/client/main.cpp.o
  /usr/include/netdb.h
  /usr/include/netinet/in.h
  /usr/include/netinet/tcp.h
+ /usr/include/poll.h
  /usr/include/pthread.h
  /usr/include/rpc/netdb.h
  /usr/include/sched.h
@@ -243,6 +245,7 @@ CMakeFiles/client.dir/source/client/main.cpp.o
  /usr/include/stdio.h
  /usr/include/stdlib.h
  /usr/include/sys/cdefs.h
+ /usr/include/sys/poll.h
  /usr/include/sys/select.h
  /usr/include/sys/single_threaded.h
  /usr/include/sys/socket.h

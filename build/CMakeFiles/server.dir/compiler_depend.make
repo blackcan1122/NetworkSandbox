@@ -3,6 +3,7 @@
 
 CMakeFiles/server.dir/source/server/main.cpp.o: /home/blackcan/Hax0rStuff/NetworkTest/source/server/main.cpp \
   /home/blackcan/Hax0rStuff/NetworkTest/source/includes_all/NettyGritty.h \
+  /home/blackcan/Hax0rStuff/NetworkTest/source/includes_all/NettyGritty_C.hpp \
   /usr/include/alloca.h \
   /usr/include/arpa/inet.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -330,6 +331,8 @@ bin/server: /usr/lib/Scrt1.o \
 
 /usr/include/sys/poll.h:
 
+/usr/include/sys/cdefs.h:
+
 /usr/include/bits/stat.h:
 
 /usr/include/c++/15.2.1/cstdio:
@@ -428,8 +431,6 @@ bin/server: /usr/lib/Scrt1.o \
 
 /usr/include/bits/types/__locale_t.h:
 
-/usr/include/bits/types/__fpos64_t.h:
-
 /usr/include/bits/errno.h:
 
 /usr/include/bits/time64.h:
@@ -438,9 +439,13 @@ bin/server: /usr/lib/Scrt1.o \
 
 /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/ctype_base.h:
 
-/usr/include/bits/fcntl.h:
+/usr/include/c++/15.2.1/ios:
 
-/usr/include/asm-generic/socket.h:
+/usr/include/bits/thread-shared-types.h:
+
+/usr/include/c++/15.2.1/debug/debug.h:
+
+/usr/include/c++/15.2.1/type_traits:
 
 /usr/include/c++/15.2.1/bits/stl_iterator.h:
 
@@ -498,6 +503,10 @@ CMakeFiles/server.dir/source/server/main.cpp.o:
 
 /usr/include/asm-generic/int-ll64.h:
 
+/usr/include/asm-generic/socket.h:
+
+/usr/include/bits/fcntl.h:
+
 /usr/include/asm-generic/errno-base.h:
 
 /home/blackcan/Hax0rStuff/NetworkTest/source/includes_all/NettyGritty.h:
@@ -510,15 +519,19 @@ CMakeFiles/server.dir/source/server/main.cpp.o:
 
 /usr/include/c++/15.2.1/pstl/pstl_config.h:
 
+/usr/include/bits/types/__fpos64_t.h:
+
+/home/blackcan/Hax0rStuff/NetworkTest/source/includes_all/NettyGritty_C.hpp:
+
+/usr/include/c++/15.2.1/string:
+
+/usr/include/bits/long-double.h:
+
 /usr/include/c++/15.2.1/bits/version.h:
 
 /usr/include/bits/types/struct_osockaddr.h:
 
 /usr/include/asm/types.h:
-
-/usr/include/c++/15.2.1/bits/locale_classes.h:
-
-/usr/include/alloca.h:
 
 /usr/include/c++/15.2.1/bits/ostream.h:
 
@@ -540,14 +553,6 @@ CMakeFiles/server.dir/source/server/main.cpp.o:
 
 /usr/include/c++/15.2.1/bits/vector.tcc:
 
-/usr/include/c++/15.2.1/ios:
-
-/usr/include/bits/thread-shared-types.h:
-
-/usr/include/c++/15.2.1/debug/debug.h:
-
-/usr/include/c++/15.2.1/type_traits:
-
 /usr/include/bits/floatn.h:
 
 /usr/include/bits/types/__mbstate_t.h:
@@ -565,8 +570,6 @@ CMakeFiles/server.dir/source/server/main.cpp.o:
 /usr/include/c++/15.2.1/thread:
 
 /usr/include/bits/poll.h:
-
-/usr/include/bits/long-double.h:
 
 /usr/include/bits/pthreadtypes-arch.h:
 
@@ -631,6 +634,10 @@ CMakeFiles/server.dir/source/server/main.cpp.o:
 /usr/include/bits/types/time_t.h:
 
 /usr/include/bits/struct_stat.h:
+
+/usr/include/alloca.h:
+
+/usr/include/c++/15.2.1/bits/locale_classes.h:
 
 /usr/include/c++/15.2.1/bits/locale_facets.h:
 
@@ -801,10 +808,6 @@ CMakeFiles/server.dir/source/server/main.cpp.o:
 /usr/include/c++/15.2.1/bits/exception_defines.h:
 
 /usr/include/c++/15.2.1/vector:
-
-/usr/include/c++/15.2.1/string:
-
-/usr/include/sys/cdefs.h:
 
 /usr/include/c++/15.2.1/string_view:
 

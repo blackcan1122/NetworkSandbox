@@ -39,6 +39,7 @@ CMakeFiles/client.dir/source/client/main.cpp.o: /home/blackcan/Hax0rStuff/Networ
   /usr/include/bits/locale.h \
   /usr/include/bits/long-double.h \
   /usr/include/bits/netdb.h \
+  /usr/include/bits/poll.h \
   /usr/include/bits/posix_opt.h \
   /usr/include/bits/pthread_stack_min-dynamic.h \
   /usr/include/bits/pthreadtypes-arch.h \
@@ -234,6 +235,7 @@ CMakeFiles/client.dir/source/client/main.cpp.o: /home/blackcan/Hax0rStuff/Networ
   /usr/include/netdb.h \
   /usr/include/netinet/in.h \
   /usr/include/netinet/tcp.h \
+  /usr/include/poll.h \
   /usr/include/pthread.h \
   /usr/include/rpc/netdb.h \
   /usr/include/sched.h \
@@ -242,6 +244,7 @@ CMakeFiles/client.dir/source/client/main.cpp.o: /home/blackcan/Hax0rStuff/Networ
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
   /usr/include/sys/cdefs.h \
+  /usr/include/sys/poll.h \
   /usr/include/sys/select.h \
   /usr/include/sys/single_threaded.h \
   /usr/include/sys/socket.h \
@@ -307,9 +310,9 @@ CMakeFiles/client.dir/source/client/main.cpp.o:
 
 /usr/include/c++/15.2.1/bits/exception_ptr.h:
 
-/usr/include/c++/15.2.1/bits/locale_facets.h:
+/usr/lib/libc.so:
 
-/usr/include/c++/15.2.1/ext/string_conversions.h:
+/usr/include/bits/pthreadtypes.h:
 
 /usr/include/c++/15.2.1/bits/exception.h:
 
@@ -332,6 +335,8 @@ CMakeFiles/client.dir/source/client/main.cpp.o:
 /usr/include/c++/15.2.1/bits/algorithmfwd.h:
 
 /usr/include/features-time64.h:
+
+/usr/include/poll.h:
 
 /usr/include/bits/timesize.h:
 
@@ -362,10 +367,6 @@ CMakeFiles/client.dir/source/client/main.cpp.o:
 /usr/include/c++/15.2.1/bits/functexcept.h:
 
 /usr/include/c++/15.2.1/streambuf:
-
-/usr/include/c++/15.2.1/bits/predefined_ops.h:
-
-/usr/include/bits/types/struct_itimerspec.h:
 
 /usr/include/bits/struct_rwlock.h:
 
@@ -529,6 +530,8 @@ CMakeFiles/client.dir/source/client/main.cpp.o:
 
 /usr/include/c++/15.2.1/ostream:
 
+/usr/include/bits/poll.h:
+
 /usr/include/bits/long-double.h:
 
 /usr/include/bits/pthreadtypes-arch.h:
@@ -598,6 +601,14 @@ CMakeFiles/client.dir/source/client/main.cpp.o:
 /usr/include/bits/types/time_t.h:
 
 /usr/include/bits/struct_stat.h:
+
+/usr/include/c++/15.2.1/bits/locale_facets.h:
+
+/usr/include/bits/types/struct_itimerspec.h:
+
+/usr/include/c++/15.2.1/bits/predefined_ops.h:
+
+/usr/include/c++/15.2.1/ext/string_conversions.h:
 
 /usr/include/c++/15.2.1/bits/localefwd.h:
 
@@ -707,6 +718,10 @@ CMakeFiles/client.dir/source/client/main.cpp.o:
 
 /usr/include/wchar.h:
 
+/usr/lib/libgcc_s.so:
+
+/usr/include/c++/15.2.1/cstddef:
+
 /usr/include/c++/15.2.1/debug/assertions.h:
 
 /usr/include/c++/15.2.1/new:
@@ -797,16 +812,10 @@ CMakeFiles/client.dir/source/client/main.cpp.o:
 
 /usr/include/stdio.h:
 
+/usr/include/sys/poll.h:
+
 /usr/include/sys/select.h:
 
 /usr/include/sys/single_threaded.h:
 
 /usr/include/unistd.h:
-
-/usr/include/bits/pthreadtypes.h:
-
-/usr/lib/libc.so:
-
-/usr/include/c++/15.2.1/cstddef:
-
-/usr/lib/libgcc_s.so:
