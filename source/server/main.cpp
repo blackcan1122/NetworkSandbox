@@ -30,7 +30,7 @@ int main()
 
     // Enable SO_REUSEADDR to avoid "Address already in use" errors
     int opt = 1;
-    NettyGritty::setsockopt_t(sockfd, SOL_SOCKET, SO_REUSEADDR, &opt ,sizeof(opt));
+    NettyGritty::setsockopt_t(sockfd, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<NettyGritty::message_t>(&opt) ,sizeof(opt));
 
     sockaddr_in serverAddr;
     std::memset(&serverAddr, 0, sizeof(serverAddr));
