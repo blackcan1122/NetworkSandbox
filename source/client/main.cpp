@@ -1,4 +1,4 @@
-#include "NettyGritty.h"
+#include "NettyGritty_C.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -12,12 +12,12 @@ int main()
 
     std::string Input;
 
-    NettyGritty::NetworkInitializer netInit;
+    NetworkInitializer netInit;
     NettyGritty::socket_t sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
-    if (!NettyGritty::is_valid_socket(sockfd))
+    if (!NettyGritty::is_valid_socket_t(sockfd))
     {
-        int error = NettyGritty::get_last_error();
+        int error = NettyGritty::get_last_error_t();
         std::cerr << "Socket creation failed with error: " << error << std::endl;
         return EXIT_FAILURE;
     }
@@ -34,9 +34,9 @@ int main()
 
     if (connect(sockfd, (struct sockaddr *)&sockaddr_other, sizeof(sockaddr_other)) < 0)
     {
-        int error = NettyGritty::get_last_error();
+        int error = NettyGritty::get_last_error_t();
         std::cerr << "Connection failed with error: " << error << std::endl;
-        NettyGritty::close_socket(sockfd);
+        NettyGritty::close_socket_t(sockfd);
         return EXIT_FAILURE;
     }
 
@@ -54,7 +54,7 @@ int main()
 
         if (Input == "Exit")
         {
-            NettyGritty::close_socket(sockfd);
+            NettyGritty::close_socket_t(sockfd);
             bShouldClose = true;
         }
 
