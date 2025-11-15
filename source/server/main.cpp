@@ -30,7 +30,7 @@ int main()
 
     // Enable SO_REUSEADDR to avoid "Address already in use" errors
     int opt = 1;
-    setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
+    NettyGritty::setsockopt_t(sockfd, SOL_SOCKET, SO_REUSEADDR, &opt ,sizeof(opt));
 
     sockaddr_in serverAddr;
     std::memset(&serverAddr, 0, sizeof(serverAddr));
@@ -61,15 +61,15 @@ int main()
 
     std::cout << "Server listening... Press Ctrl+C to stop." << std::endl;
 
-    std::vector<pollfd> fds;
-    pollfd server_fd;
+    std::vector<NettyGritty::pollfd_t> fds;
+    NettyGritty::pollfd_t server_fd;
     server_fd.fd = sockfd;
     server_fd.events = POLLIN;
     fds.push_back(server_fd);
 
     while (true)
     {
-        int poll_count = poll(fds.data(), fds.size(), 100);
+        int poll_count = NettyGritty::poll_t(fds.data(), fds.size(), 100);
 
         if (poll_count < 0)
         {

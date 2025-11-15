@@ -27,7 +27,7 @@
     #include <fcntl.h>
     #include <errno.h>
     #include <poll.h>
-    
+
     
     #define NETTYGRITTY_LINUX
     
@@ -168,6 +168,11 @@ inline bool would_block_error_t() {
 #else
     return errno == EWOULDBLOCK || errno == EAGAIN;
 #endif
+}
+
+inline int setsockopt_t(socket_t socket, int __level, int __opname, message_t __op_value, socklen_t __optlen) noexcept
+{
+    return setsockopt(socket, __level, __opname, __op_value, __optlen);
 }
 
 
