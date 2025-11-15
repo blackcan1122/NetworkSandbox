@@ -16,11 +16,30 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential cmake
 
-      - name: Configure CMake
-        run: cmake -B build -S .
+      - name: Configure CMake for Release
+        run: cmake -B build-release -S . -DCMAKE_BUILD_TYPE=Release
 
       - name: Build Release Configuration
-        run: cmake --build build --config Release
+        run: cmake --build build-release
+
+      - name: Upload Release Executables
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-release-executables
+          path: |
+            build-release/bin/client
+            build-release/bin/server
+
+      - name: Configure CMake for Debug
+        run: cmake -B build-debug -S . -DCMAKE_BUILD_TYPE=Debug
 
       - name: Build Debug Configuration
-        run: cmake --build build --config Debug
+        run: cmake --build build-debug
+
+      - name: Upload Debug Executables
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-debug-executables
+          path: |
+            build-debug/bin/client
+            build-debug/bin/server

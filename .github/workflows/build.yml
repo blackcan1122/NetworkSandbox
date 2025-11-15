@@ -19,3 +19,19 @@ jobs:
 
       - name: Build Debug Configuration
         run: cmake --build build --config Debug
+
+      - name: Upload Release Executables
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-release-executables
+          path: |
+            build/bin/Release/client.exe
+            build/bin/Release/server.exe
+
+      - name: Upload Debug Executables
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-debug-executables
+          path: |
+            build/bin/Debug/client.exe
+            build/bin/Debug/server.exe
