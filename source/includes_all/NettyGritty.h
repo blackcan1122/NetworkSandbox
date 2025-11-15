@@ -28,6 +28,7 @@
     #include <errno.h>
     #include <poll.h>
     
+    
     #define NETTYGRITTY_LINUX
     
 #else
