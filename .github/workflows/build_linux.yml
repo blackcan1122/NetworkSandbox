@@ -23,7 +23,7 @@ jobs:
         run: cmake --build build-release
 
       - name: Upload Release Executables
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: linux-release-executables
           path: |
@@ -37,7 +37,7 @@ jobs:
         run: cmake --build build-debug
 
       - name: Upload Debug Executables
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: linux-debug-executables
           path: |
