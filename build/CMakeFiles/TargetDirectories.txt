@@ -1,4 +1,0 @@
-/home/runner/work/NetworkSandbox/NetworkSandbox/build/CMakeFiles/server.dir
-/home/runner/work/NetworkSandbox/NetworkSandbox/build/CMakeFiles/client.dir
-/home/runner/work/NetworkSandbox/NetworkSandbox/build/CMakeFiles/edit_cache.dir
-/home/runner/work/NetworkSandbox/NetworkSandbox/build/CMakeFiles/rebuild_cache.dir
