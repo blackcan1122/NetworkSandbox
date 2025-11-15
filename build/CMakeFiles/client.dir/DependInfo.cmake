@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/blackcan/Hax0rStuff/NetworkTest/source/client/main.cpp" "CMakeFiles/client.dir/source/client/main.cpp.o" "gcc" "CMakeFiles/client.dir/source/client/main.cpp.o.d"
+  "/home/runner/work/NetworkSandbox/NetworkSandbox/source/client/main.cpp" "CMakeFiles/client.dir/source/client/main.cpp.o" "gcc" "CMakeFiles/client.dir/source/client/main.cpp.o.d"
   "" "bin/client" "gcc" "CMakeFiles/client.dir/link.d"
   )
 

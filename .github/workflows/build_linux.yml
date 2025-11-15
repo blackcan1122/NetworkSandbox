@@ -1,4 +1,4 @@
-name: Premake Linux CI
+name: CMake Linux CI
 
 on:
   workflow_dispatch:
@@ -11,26 +11,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install dependencies
+      - name: Install build tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y \
-            build-essential \
-            libx11-dev libxcursor-dev libxrandr-dev libxinerama-dev \
-            libxi-dev libgl1-mesa-dev libglu1-mesa-dev
+          sudo apt-get install -y build-essential cmake
 
-      - name: Setup Premake
-        uses: abel0b/setup-premake@v2.4
-        with:
-          version: "5.0.0-beta6"
-
-      - name: Generate GNU Makefiles
-        run: |
-          cd build
-          premake5 gmake2
+      - name: Configure CMake
+        run: cmake -B build -S .
 
       - name: Build Release Configuration
-        run: make config=release_x64
+        run: cmake --build build --config Release
 
       - name: Build Debug Configuration
-        run: make config=debug_x64
+        run: cmake --build build --config Debug
