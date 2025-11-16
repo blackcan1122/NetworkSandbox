@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Include directory for shared headers
-include_directories(${CMAKE_SOURCE_DIR}/source/includes_all)
+include_directories(${CMAKE_SOURCE_DIR}/source/includes_all/include)
 
 # Server executable
 add_executable(server
