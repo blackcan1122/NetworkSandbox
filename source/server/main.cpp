@@ -27,6 +27,7 @@ int main()
             client->OnDataReceived([](GritSocket& socket, const char* data, size_t length) {
                 std::string message(data, length);
                 std::cout << "Received from client: " << message << std::endl;
+                socket.Send(message);
             });
 
             client->OnDisconnect([](GritSocket& socket) {
